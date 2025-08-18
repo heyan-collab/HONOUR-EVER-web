@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>义乌市泓恒进出口有限公司 | YIWU HONOUR EVER IMPORT & EXPORT CO., LTD</title>
+<style>
+  :root{
+    --brand:#b50000;
+    --text:#333;
+    --muted:#666;
+    --bg:#ffffff;
+    --tile:#f5f5f5;
+    --tileBorder:#e7e7e7;
+  }
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:Segoe UI,Arial,Helvetica,sans-serif;
+    background:var(--bg); color:var(--text); line-height:1.6;
+  }
+
+  /* ===== Header / Nav ===== */
+  header{
+    position:sticky; top:0; z-index:1000;
+    background:var(--brand); color:#fff;
+    padding:10px 20px; box-shadow:0 2px 6px rgba(0,0,0,.08);
+  }
+  .topbar{
+    display:flex; align-items:center; gap:20px;
+  }
+  .logo img{height:46px; display:block;}
+  nav{flex:1;}
+  nav ul{
+    display:flex; justify-content:space-evenly; align-items:center;
+    list-style:none; margin:0; padding:0;
+  }
+  nav li{
+    color:#fff; cursor:pointer; font-weight:600; letter-spacing:.3px;
+    padding:8px 10px; border-radius:6px; transition:.2s;
+    white-space:nowrap;
+  }
+  nav li:hover{background:rgba(255,255,255,.12)}
+  .lang-toggle{display:flex; gap:8px; align-items:center;}
+  .lang-toggle button{
+    background:none; border:none; color:#fff; font-weight:700; cursor:pointer;
+  }
+
+  /* ===== Banner ===== */
+  .banner{
+    background:url('banner.jpg') center/cover no-repeat;
+    color:#fff; text-shadow:0 1px 3px rgba(0,0,0,.6);
+    padding:10vw 20px; text-align:center;
+  }
+  .banner h1{margin:0 0 10px; font-size:clamp(22px,4.2vw,42px);}
+  .banner p{margin:6px 0;}
+
+  /* ===== Sections ===== */
+  section{max-width:1200px; margin:0 auto; padding:48px 20px;}
+  h2{color:var(--brand); margin:0 0 16px; font-size:28px;}
+  .muted{color:var(--muted)}
+
+  /* ===== About ===== */
+  .about-grid{
+    display:grid; gap:14px;
+  }
+  .about-grid p{margin:0; background:#fff; border-left:4px solid var(--brand);
+    padding:12px 14px; border-radius:6px; box-shadow:0 1px 0 rgba(0,0,0,.04);}
+  .about-intro{margin-bottom:12px;}
+
+  /* ===== Services tiles ===== */
+  .service-tiles{
+    display:grid; grid-template-columns:repeat(4,1fr);
+    gap:16px; margin-top:8px;
+  }
+  .tile{
+    position:relative; min-height:150px;
+    border-radius:10px; overflow:hidden;
+    display:grid; place-items:center; text-align:center; cursor:pointer;
+    transition:transform .2s ease, box-shadow .2s ease;
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+  }
+  .tile:hover{transform:translateY(-3px); box-shadow:0 8px 20px rgba(0,0,0,.08)}
+  .tile .label{z-index:2; font-weight:700; color:#fff;}
+  .tile::before{
+    content:""; position:absolute; inset: 0;
+    background: rgba(181, 0, 0, 0.589); transition:opacity .25s ease;
+    z-index: 1;
+  }
+  .tile:hover .label{color:#fff; text-shadow:0 1px 3px rgba(0,0,0,.6)}
+  .tile:hover::before{opacity:0}
+
+  /* ===== Services paragraphs ===== */
+  .service-paras{margin-top:18px; display:grid; gap:10px;}
+  .service-paras p{
+    margin:0; background:#fff; border:1px solid var(--tileBorder);
+    border-left:4px solid var(--brand); padding:12px 14px; border-radius:6px;
+  }
+
+  /* ===== Three-column table/cards ===== */
+  .three-cols{
+    display:grid; gap:16px; margin-top:18px;
+    grid-template-columns:repeat(3,1fr);
+  }
+  .card{
+    border:1px solid var(--tileBorder); border-radius:12px; overflow:hidden; background:#fff;
+    display:flex; flex-direction:column; height:100%;
+  }
+  .card h3{
+    margin:0; padding:12px 14px; background:var(--brand); color:#fff; font-size:18px;
+  }
+  .card .body{padding:12px 14px; font-size:14px; white-space:pre-line;}
+
+  /* ===== Advantages ===== */
+  .list{
+    display:grid; gap:10px; margin-top:8px;
+  }
+  .list .item{
+    background:#fff; border:1px solid var(--tileBorder); border-radius:8px;
+    padding:12px 14px;
+  }
+  .badge{display:inline-block; background:var(--brand); color:#fff; padding:2px 8px; border-radius:999px; font-size:12px; margin-right:8px;}
+
+  /* ===== Flow (red arrows) ===== */
+  .flow{
+    display:flex; flex-wrap:wrap; gap:10px; margin-top:14px;
+  }
+  .step{
+    position:relative; background:#fff; border:1px solid var(--tileBorder);
+    padding:10px 12px; border-radius:8px; min-width:140px; text-align:center; font-weight:600;
+  }
+  .step::after{
+    content:""; position:absolute; right:-18px; top:50%; transform:translateY(-50%);
+    border-left:18px solid var(--brand); border-top:9px solid transparent; border-bottom:9px solid transparent;
+  }
+  .step:last-child::after{display:none}
+
+  /* ===== Certifications / Leaders ===== */
+  .leaders{
+    display:grid; gap:16px; grid-template-columns:repeat(2,1fr); margin-top:10px;
+  }
+  .leader{
+    display:grid; grid-template-columns:120px 1fr; 
+    gap:100px; align-items:center;
+    background:#fff; border:1px solid var(--tileBorder); border-radius:10px; padding:12px;
+  }
+  .leader img{width: 200px; 
+    height: auto; 
+    border-radius: 8px;
+    border: 1px solid var(--tileBorder);
+    object-fit: contain; 
+  }
+  .leader h4{margin:0 0 6px}
+  .leader p{margin:4px 0}
+
+  .honor-gallery {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin: 20px 0;
+  }
+  .honor-gallery img {
+    width: 20%;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+  .honor-gallery img:hover {
+    transform: scale(1.2);
+    z-index: 2; 
+  }
+  .honor-gallery:hover img:not(:hover) {
+    transform: scale(0.9);
+    opacity: 0.6; 
+  }
+
+  @media (max-width: 768px) {
+    .leaders {
+      grid-template-columns: 1fr;   
+    }
+    .leader {
+      grid-template-columns: 1fr;   
+      text-align: center;
+    }
+    .leader img {
+      margin: 0 auto;
+    }
+  }
+
+
+  /* ===== Maps (vertical) ===== */
+  .maps img{
+    width:100%; display:block; border:1px solid var(--tileBorder); border-radius:8px; margin-bottom:14px;
+  }
+  
+  /* ===== Partners ===== */
+  .partners-gallery {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-top: 20px;
+    align-items: center;
+    justify-items: center;
+    margin: 40px 0;
+  }
+  .partners-gallery img {
+    /*max-width: 80%;*/
+    height: 80px; width: auto;
+    object-fit: contain;
+  }
+
+  /* ===== Footer ===== */
+  footer{
+    margin-top:20px; background:#fafafa; border-top:1px solid var(--tileBorder);
+    color:#555; padding:16px 20px; text-align:center;
+  }
+
+  /* ===== Responsive ===== */
+  @media (max-width:992px){
+    .service-tiles{grid-template-columns:repeat(2,1fr)}
+    .three-cols{grid-template-columns:1fr; }
+    .leaders{grid-template-columns:1fr}
+    .leader{grid-template-columns:100px 1fr}
+  }
+  @media (max-width:600px){
+    nav ul{gap:6px}
+    .step{min-width:120px; font-size:14px}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="topbar">
+    <div class="logo"><img src="logo.png" alt="Logo"/></div>
+    <nav>
+      <ul>
+        <li data-key="menu_home" onclick="scrollToSection('home')"></li>
+        <li data-key="menu_about" onclick="scrollToSection('about')"></li>
+        <li data-key="menu_services" onclick="scrollToSection('services')"></li>
+        <li data-key="menu_advantages" onclick="scrollToSection('advantages')"></li>
+        <li data-key="menu_certifications" onclick="scrollToSection('certifications')"></li>
+        <li data-key="menu_maps" onclick="scrollToSection('maps')"></li>
+        <li data-key="menu_contact" onclick="scrollToSection('contact')"></li>
+      </ul>
+    </nav>
+    <div class="lang-toggle">
+      <button onclick="setLanguage('cn')">中文</button>| 
+      <button onclick="setLanguage('en')">EN</button>
+    </div>
+  </div>
+</header>
+
+<!-- Banner -->
+<section id="home" class="banner">
+  <h1 data-key="company_name"></h1>
+  <p data-key="company_slogan"></p>
+  <p data-key="company_address"></p>
+</section>
+
+<!-- About -->
+<section id="about">
+  <h2 data-key="about_title"></h2>
+  <p class="about-intro" data-key="about_intro"></p>
+  <div class="about-grid">
+    <p><strong data-key="about_established_label"></strong><span data-key="about_established"></span></p>
+    <p><strong data-key="about_spirit_label"></strong><span data-key="about_spirit"></span></p>
+    <p><strong data-key="about_goal_label"></strong><span data-key="about_goal"></span></p>
+  </div>
+</section>
+
+<!-- Services -->
+<section id="services">
+  <h2 data-key="services_title"></h2>
+  <div class="service-tiles">
+    <div class="tile" style="background-image:url('p1.jpg')">
+      <div class="label" data-key="service_1"></div>
+    </div>
+    <div class="tile" style="background-image:url('p2.jpg')">
+      <div class="label" data-key="service_2"></div>
+    </div>
+    <div class="tile" style="background-image:url('p3.jpg')">
+      <div class="label" data-key="service_3"></div>
+    </div>
+    <div class="tile" style="background-image:url('p4.jpg')">
+      <div class="label" data-key="service_4"></div>
+    </div>
+  </div>
+  
+
+  <div class="service-paras">
+    <p data-key="service_para1"></p>
+    <p data-key="service_para2"></p>
+  </div>
+
+  <div class="three-cols">
+    <div class="card">
+      <h3 data-key="col1_title"></h3>
+      <div class="body" data-key="col1_body"></div>
+    </div>
+    <div class="card">
+      <h3 data-key="col2_title"></h3>
+      <div class="body" data-key="col2_body"></div>
+    </div>
+    <div class="card">
+      <h3 data-key="col3_title"></h3>
+      <div class="body" data-key="col3_body"></div>
+    </div>
+  </div>
+</section>
+
+<!-- Advantages -->
+<section id="advantages">
+  <h2 data-key="advantages_title"></h2>
+  <p class="muted" data-key="advantages_intro"></p>
+
+  <div class="list">
+    <div class="item"><span class="badge" data-key="tag_regions"></span><span data-key="adv_regions"></span></div>
+    <div class="item"><span class="badge" data-key="tag_service_adv"></span><span data-key="adv_service_adv"></span></div>
+    <div class="item"><span class="badge" data-key="tag_products"></span><span data-key="adv_products"></span></div>
+    <div class="item"><span class="badge" data-key="tag_value_added"></span><span data-key="adv_value_added"></span></div>
+  </div>
+
+  <div class="list" style="margin-top:12px">
+    <div class="item">
+      <strong data-key="tag_booking"></strong>
+      <div style="margin-top:6px" data-key="booking_desc"></div>
+      <div class="flow" id="bookingFlow"></div>
+    </div>
+    <div class="item">
+      <strong data-key="tag_special_routes"></strong>
+      <div style="white-space:pre-line; margin-top:6px" data-key="special_routes"></div>
+    </div>
+    <div class="item">
+      <strong data-key="tag_rail"></strong>
+      <div style="margin-top:6px" data-key="rail_text"></div>
+    </div>
+    <div class="item">
+      <strong data-key="tag_solutions"></strong>
+      <div style="margin-top:6px" data-key="solutions_text"></div>
+    </div>
+    <div class="item">
+      <strong data-key="tag_other_services"></strong>
+      <div style="margin-top:6px" data-key="other_services"></div>
+    </div>
+  </div>
+</section>
+
+<!-- Certifications / Leaders -->
+<section id="certifications">
+  <h2 data-key="certifications_title"></h2>
+  <p data-key="certifications_content"></p>
+
+  <div class="honor-gallery">
+    <img src="honor1.jpg" alt="资质1">
+    <img src="honor2.jpg" alt="资质2">
+    <img src="honor4.jpg" alt="资质4">
+    <img src="honor5.jpg" alt="资质5">
+    <img src="honor6.jpg" alt="资质6">
+  </div>
+
+  <h3 style="margin-top:18px" data-key="leaders_title"></h3>
+  <div class="leaders">
+    <div class="leader">
+      <img src="ceo1.jpg" alt="Leader 1"/>
+      <div>
+        <h4 data-key="leader1_name"></h4>
+        <p data-key="leader1_title"></p>
+        <p class="muted" data-key="leader1_bio"></p>
+      </div>
+    </div>
+    <div class="leader">
+      <img src="ceo2.jpg" alt="Leader 2"/>
+      <div>
+        <h4 data-key="leader2_name"></h4>
+        <p data-key="leader2_title"></p>
+        <p class="muted" data-key="leader2_bio"></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Maps (vertical) -->
+<section id="map" class="section">
+    <h2 class="section-title" data-lang="map-title">地图展示</h2>
+    
+    <div class="map-container">
+      <!-- 上面的视频 -->
+      <video src="map1.mp4" controls autoplay muted loop style="width:100%; border-radius:10px;"></video>
+    </div>
+  </section>
+
+<!-- Partners -->
+  <section id="partners" class="section">
+    <h2 class="section-title" data-lang="partners-title">合作伙伴</h2>
+    <div class="partners-gallery">
+      <img src="partner1.png" alt="合作伙伴1">
+      <img src="partner2.png" alt="合作伙伴2">
+      <img src="partner3.png" alt="合作伙伴3">
+      <img src="partner4.png" alt="合作伙伴4">
+      <img src="partner5.png" alt="合作伙伴5">
+      <img src="partner6.png" alt="合作伙伴6">
+      <img src="partner7.png" alt="合作伙伴7">
+      <img src="partner8.png" alt="合作伙伴8">
+    </div>
+  </section>  
+
+<!-- Contact -->
+<section id="contact">
+  <h2 data-key="contact_title"></h2>
+  <p><strong data-key="contact_person_label"></strong> <span data-key="contact_person"></span></p>
+  <p><strong>WeChat：</strong><span data-key="contact_wechat"></span></p>
+  <p><strong data-key="phone_label"></strong> <span data-key="contact_phone"></span></p>
+  <p><strong>Email：</strong><span data-key="contact_email"></span></p>
+  <p class="muted" data-key="company_names"></p>
+</section>
+
+<footer>
+  <div>&copy; <span id="y"></span> <span data-key="company_name_short"></span>. All rights reserved.</div>
+</footer>
+
+<script>
+  /* ===== Tiles: set hover images from data-img ===== */
+  document.querySelectorAll('.tile').forEach(t=>{
+    const img=t.getAttribute('data-img');
+    t.style.setProperty('--img',`url('${img}')`);
+    t.addEventListener('mouseenter',()=>{ t.style.setProperty('--img',`url('${img}')`); });
+    // CSS uses ::before with inline style:
+    t.style.setProperty('--img-url',`url('${img}')`);
+    t.style.cssText += `--img-url:url('${img}');`;
+    // apply to pseudo via a dynamic stylesheet:
+  });
+  // inject a rule so each tile uses its own image
+  const styleEl=document.createElement('style');
+  document.querySelectorAll('.tile').forEach((t,i)=>{
+    const img=t.getAttribute('data-img');
+    styleEl.textContent += `.tile:nth-of-type(${i+1})::before{background-image:url('${img}');}\n`;
+  });
+  document.head.appendChild(styleEl);
+
+  /* ===== Translations ===== */
+  const t = {
+    cn:{
+      menu_home:"首页", menu_about:"公司简介", menu_services:"经营范围",
+      menu_advantages:"服务优势", menu_certifications:"资质荣誉", menu_maps:"地图",
+      menu_contact:"联系我们",
+
+      company_name:"义乌市泓恒进出口有限公司",
+      company_name_short:"泓恒进出口",
+      company_slogan:"在物流超市里选择国际物流解决方案",
+      company_address:"地址：浙江省义乌市稠州北路1121号福田大厦1707室",
+
+      about_title:"公司简介",
+      about_intro:"合伙人均来自上市公司业界精英，深耕贸易、物流行业多年；得益于上市公司的规范管理，进出口业务快速发展的同时兼顾安全操作，已建立完整的进出口服务体系。创始人与义乌国际物流同步成长，公司拥有完善的物流产品。",
+      about_established_label:"成立时间：",
+      about_established:"2011年11月",
+      about_spirit_label:"企业精神：",
+      about_spirit:"诚信、务实、高效、创新",
+      about_goal_label:"目标：",
+      about_goal:"让国际物流变得更简单",
+
+      services_title:"经营范围",
+      service_1:"国际贸易",
+      service_2:"国际物流",
+      service_3:"基础物流",
+      service_4:"跨境电商物流",
+
+      service_para1:"提供海、陆、空干线服务、关务仓储保税陆运、美国DDP业务。客户仓库的全程服务、全球货运服务、跨境物流支持。",
+      service_para2:"国际空运、国际海运、中欧班列等多式联运组合。服务港口：宁波、上海、广州、深圳、青岛、天津、厦门、山东。覆盖20+国家地区，与20+国际班轮公司合作，10+优势航线。",
+
+      col1_title:"国际空运",
+      col1_body:"聚焦全球空港枢纽，联动空铁、空海、空陆多式联运，构建综合空运运输网络；打造空运门到门配送服务，覆盖多样化需求。",
+      col2_title:"国际海运",
+      col2_body:"覆盖起运港至目的港的海运进出口物流服务；通过多式联运组合（如海铁、中欧联运），满足不同场景下的运输时效与成本要求。",
+      col3_title:"中欧班列",
+      col3_body:"义乌出发中欧、中俄、中亚三条有25条线路；通过中欧铁路可覆盖中国—俄罗斯、波兰、捷克、德国、法国、意大利等东欧/西欧各内陆点。",
+
+      advantages_title:"服务优势",
+      advantages_intro:"专业采购团队；与多家国际船公司合作；专业报关报检团队；高效仓储管理；单证制作支持；全球服务网络（澳门、马绍尔群岛分公司）。",
+      tag_regions:"优势区域",
+      tag_service_adv:"服务优势",
+      tag_products:"优势产品",
+      tag_value_added:"增值服务",
+      adv_regions:"东南亚线、北非、南美、美线等",
+      adv_service_adv:"时效快捷，舱位保障",
+      adv_products:"服装、家具、日用百货",
+      adv_value_added:"金融供应链赋能",
+
+      tag_booking:"物流订舱流程",
+      booking_desc:"一对一管家服务，资深专业团队提供安全、高效、稳健、个性化的一站式服务。步骤：",
+      booking_steps:["客户询价","接单","提交托书","审核单据信息","货物订舱","货物入仓","出口报关","提单确认","费用确认","清关提货"],
+
+      tag_special_routes:"特别优势航线",
+      special_routes:
+"美线：Los Angeles、New York、Chicago\n东南亚线：Jakarta、Port Klang\n北非线：ALGIERS、ANNABA\n澳新线：MELBOURNE\n南美线：JAMAICA、BUENOSIRES",
+
+      tag_rail:"铁路运输",
+      rail_text:"向西依陆出境，向东依港出海。",
+      tag_solutions:"物流解决方案",
+      solutions_text:"针对货物品类、包装的不同，制定个性化服务方案。",
+      tag_other_services:"其他服务",
+      other_services:"报关报检、仓储服务、单证制作、外汇结算、政策咨询。",
+
+      certifications_title:"资质荣誉",
+      certifications_content:"进出口资质，市场采购组货人资质，义乌市重点供应链服务企业，义乌市港澳商会副会长单位。",
+      
+      leaders_title:"公司管理层",
+
+      leader1_name:"陈小勤",
+      leader1_title:"总裁",
+      leader1_bio:"现任义乌港澳总商会副会长；仁和国际贸易公司、义乌市泓恒进出口有限公司董事长。2011年创办进出口公司以来，始终专注于贸易与物流行业，带领团队深耕国际航线与中欧班列业务。凭借多年行业经验与专业团队，公司已建立完善的进出口服务体系，业务涵盖一般贸易、跨境电商、海空铁路运输及国际货运代理。",
+      leader2_name:"陈菁华",
+      leader2_title:"联席总裁",
+      leader2_bio:"高级物流师，高级经济师，历任义乌市B型保税公司总经理，金义综合保税区业务总监，陆港铁路口岸发展有限公司总经理。多年来积极投身于物流运输事业，以畅通物流大通道为目标，保障服务“义新欧”中欧班列和“义甬舟”海铁联运班列的高质量发展，在双班列发展、口岸业务拓展等方面创造17个引领性、标志性的“首家首单首例”。2023年带领团队落地全国首个“先查验后装运”海关监管集拼仓。",
+
+      maps_title:"地图展示",
+      contact_title:"联系我们",
+      contact_person_label:"联系人：",
+      contact_person:"Crystal 陈菁华",
+      phone_label:"电话：",
+      contact_wechat:"hua413199864",
+      contact_phone:"0579-85199885, 0086-13606890177",
+      contact_email:"cccjinghua@vip.163.com",
+      company_names:"义乌市鑫泓供应链服务有限公司 | RENHE CORPORATION LIMITED"
+    },
+
+    en:{
+      menu_home:"Home", menu_about:"About", menu_services:"Services",
+      menu_advantages:"Advantages", menu_certifications:"Certifications", menu_maps:"Maps",
+      menu_contact:"Contact",
+
+      company_name:"YIWU HONOUR EVER IMPORT & EXPORT CO., LTD",
+      company_name_short:"Honour Ever",
+      company_slogan:"Choose international logistics solutions from the logistics supermarket.",
+      company_address:"ADD: ROOM 1707, FUTIAN MANSION, NO.1121 CHOUZHOU NORTH ROAD, YIWU, ZHEJIANG, CHINA",
+
+      about_title:"About Us",
+      about_intro:"Partners are industry elites from listed companies with deep experience in trade and logistics. Thanks to standardized management, our import & export business has grown rapidly with safe operations and a complete service system. Our founders grew alongside Yiwu’s international logistics industry.",
+      about_established_label:"Established: ",
+      about_established:"November 2011",
+      about_spirit_label:"Entrepreneurial Spirit: ",
+      about_spirit:"Integrity, pragmatism, efficiency, innovation",
+      about_goal_label:"Goal: ",
+      about_goal:"To make international logistics easier",
+
+      services_title:"Business Scope",
+      service_1:"International Trade",
+      service_2:"International Logistics",
+      service_3:"Basic Logistics",
+      service_4:"Cross-border E-commerce Logistics",
+
+      service_para1:"Providing sea/land/air trunk services, customs warehousing, bonded land transport, and US DDP. Full-service warehouse support, global freight, and cross-border logistics.",
+      service_para2:"Multimodal combos: Air freight, Ocean freight, China-Europe Express. Ports: Ningbo, Shanghai, Guangzhou, Shenzhen, Qingdao, Tianjin, Xiamen, Shandong. 20+ countries, 20+ liner partners, 10+ strong routes.",
+
+      col1_title:"International Air Freight",
+      col1_body:"Focusing on global airport hubs, integrating air-rail/air-sea/air-land multimodal transport to build a comprehensive air network; door-to-door delivery for diverse needs.",
+      col2_title:"International Ocean Freight",
+      col2_body:"Ocean import/export services from POL to POD; with multimodal combinations (sea-rail, China-Europe) to meet time-cost requirements across scenarios.",
+      col3_title:"China-Europe Express",
+      col3_body:"25 routes from Yiwu to Central Europe, China-Russia, and Central Asia, covering inland points across Eastern and Western Europe (Russia, Poland, Czechia, Germany, France, Italy, etc.).",
+
+      advantages_title:"Our Advantages",
+      advantages_intro:"Professional procurement team; partnerships with multiple international carriers; professional customs clearance team; efficient warehousing; document support; global network (Macau, Marshall Islands).",
+      tag_regions:"Regions",
+      tag_service_adv:"Service Advantage",
+      tag_products:"Products",
+      tag_value_added:"Value-added",
+      adv_regions:"Southeast Asia, North Africa, South America, US",
+      adv_service_adv:"Fast lead times, guaranteed space",
+      adv_products:"Apparel, furniture, daily goods",
+      adv_value_added:"Financial supply-chain enablement",
+
+      tag_booking:"Booking Workflow",
+      booking_desc:"One-to-one concierge; experienced professionals deliver safe, efficient, stable, and personalized one-stop service. Steps:",
+      booking_steps:["Inquiry","Order acceptance","Submit shipping order","Document review","Space booking","Warehouse in","Export declaration","B/L confirmation","Charge confirmation","Customs release & pickup"],
+
+      tag_special_routes:"Special Advantage Routes",
+      special_routes:
+"US: Los Angeles, New York, Chicago\nSE Asia: Jakarta, Port Klang\nNorth Africa: Algiers, Annaba\nANZ: Melbourne\nSouth America: Jamaica, Buenos Aires",
+
+      tag_rail:"Rail Transport",
+      rail_text:"Westbound via land borders, eastbound via seaports.",
+      tag_solutions:"Logistics Solutions",
+      solutions_text:"Personalized plans tailored to cargo type and packaging.",
+      tag_other_services:"Other Services",
+      other_services:"Customs declaration & inspection, warehousing, documentation, FX settlement, policy consulting.",
+
+      certifications_title:"Certifications",
+      certifications_content:"Import & export qualifications; Market Procurement Group qualification; Key Yiwu supply-chain enterprise; Vice President unit of Yiwu HK & Macau Chamber.",
+      leaders_title:"Leadership",
+
+      leader1_name:"Xiaoqin CHEN",
+      leader1_title:"President",
+      leader1_bio:"Current Vice President of the Yiwu Hong Kong & Macau General Chamber of Commerce; Chairman of Renhe International Trading Co., Ltd. and Yiwu Hongheng Import & Export Co., Ltd. Since 2011, focused on trade and logistics, leading expansion of international shipping and China–Europe Railway services, and building a comprehensive system covering trade, cross-border e-commerce, and global freight forwarding.",
+      leader2_name:"Crystal CHEN",
+      leader2_title:"Co-President",
+      leader2_bio:"Senior Logistics and Economics Specialist. Actively engaged in logistics and transportation, ensuring high-quality operation of the Yiwu–Europe Railway and Yiwu–Ningbo–Zhoushan sea-rail services. Pioneered 17 landmark “firsts” in dual-route development and port operations, and led the launch of China’s first “inspection before shipment” customs consolidation warehouse in 2023.",
+
+      maps_title:"Maps",
+      contact_title:"Contact",
+      contact_person_label:"Contact: ",
+      contact_person:"Crystal CHEN",
+      phone_label:"Phone: ",
+      contact_wechat:"hua413199864",
+      contact_phone:"0579-85199885, 0086-13606890177",
+      contact_email:"cccjinghua@vip.163.com",
+      company_names:"YIWU XINHONG SUPPLY CHAIN SERVICE CO., LTD | RENHE CORPORATION LIMITED"
+    }
+  };
+
+  function setLanguage(lang){
+    document.querySelectorAll("[data-key]").forEach(el=>{
+      const key=el.getAttribute("data-key");
+      const val=t[lang][key]||"";
+      // Use textContent for most, but allow \n in certain blocks
+      if(el.classList.contains('body') || el.parentElement?.classList.contains('list') || key.includes("body") || key.includes("routes")){
+        el.textContent = val;
+      }else{
+        el.textContent = val;
+      }
+    });
+
+    // Build booking flow steps (red arrows)
+    const flow=document.getElementById('bookingFlow');
+    flow.innerHTML="";
+    (t[lang].booking_steps||[]).forEach(s=>{
+      const div=document.createElement('div');
+      div.className='step';
+      div.textContent=s;
+      flow.appendChild(div);
+    });
+  }
+
+  function scrollToSection(id){
+    document.getElementById(id).scrollIntoView({behavior:"smooth", block:"start"});
+  }
+
+  // Init
+  setLanguage('cn');
+  document.getElementById('y').textContent=new Date().getFullYear();
+</script>
+</body>
+</html>
