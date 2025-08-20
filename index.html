@@ -50,37 +50,114 @@
     word-break: break-word;
   }
 
-  * 保证 flex/grid 在小屏幕时能自动换行 */
+  /* 保证 flex/grid 在小屏幕时能自动换行 */
   .flex, .grid, .row {
     flex-wrap: wrap;
     overflow-x: hidden;
   }
 
-
   /* ===== Header / Nav ===== */
-  header{
-    position:sticky; top:0; z-index:1000;
-    background:var(--brand); color:#fff;
-    padding:10px 20px; box-shadow:0 2px 6px rgba(0,0,0,.08);
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: var(--brand);
+    color: #fff;
+    padding: 10px 20px;
+    box-shadow: 0 2px 6px rgba(0,0,0,.08);
+    width: 100%;
+    overflow-x: hidden;
   }
-  .topbar{
-    display:flex; align-items:center; gap:20px;
+
+  .topbar {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: nowrap;
+    justify-content: space-between;
   }
-  .logo img{height:46px; display:block;}
-  nav{flex:1;}
-  nav ul{
-    display:flex; justify-content:space-evenly; align-items:center;
-    list-style:none; margin:0; padding:0;
+
+  .logo img {
+    height: 46px;
+    max-width: 100%;
+    display: block;
   }
-  nav li{
-    color:#fff; cursor:pointer; font-weight:600; letter-spacing:.3px;
-    padding:8px 10px; border-radius:6px; transition:.2s;
-    white-space:nowrap;
+
+/* ===== Desktop Nav ===== */
+  .desktop-nav ul {
+    display: flex;
+    gap: 10px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    flex-wrap: nowrap; 
   }
-  nav li:hover{background:rgba(255,255,255,.12)}
-  .lang-toggle{display:flex; gap:8px; align-items:center;}
-  .lang-toggle button{
-    background:none; border:none; color:#fff; font-weight:700; cursor:pointer;
+
+  .desktop-nav li {
+    color: #fff;
+    cursor: pointer;
+    font-weight: 600;
+    letter-spacing: .3px;
+    padding: 8px 10px;
+    border-radius: 6px;
+    transition: .2s;
+    white-space: nowrap;
+  }
+
+  .desktop-nav li:hover {
+    background: rgba(255,255,255,.12);
+  }
+
+/* ===== Mobile Nav Toggle ===== */
+  .mobile-nav-toggle {
+    display: none;
+  }
+
+  .mobile-nav {
+    display: none;
+  }
+
+  .mobile-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    background: var(--brand);
+  }
+
+  .mobile-nav li {
+    padding: 10px 20px;
+    border-top: 1px solid rgba(255,255,255,.2);
+  }
+
+  /* ===== Language Toggle ===== */
+  .lang-toggle {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  .lang-toggle button {
+    background: none;
+    border: none;
+    color: #fff;
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+/* ===== Media Queries ===== */
+  @media (max-width: 768px) {
+    .desktop-nav {
+      display: none; /* 小屏隐藏桌面导航 */
+    }
+
+    .mobile-nav-toggle {
+      display: block;
+    }
+
+    .mobile-nav.show {
+      display: block; /* 点击汉堡显示菜单 */
+    }
   }
 
   /* ===== Banner ===== */
@@ -268,13 +345,17 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 20px;
-    margin-top: 20px;
+    /*margin-top: 20px;*/
     align-items: center;
     justify-items: center;
     margin: 40px 0;
+    width: 100%;      /* 防止超宽 */
+    max-width: 100%;  /* 防止撑出屏幕 */
+    box-sizing: border-box;
   }
   .partners-gallery img {
     /*max-width: 80%;*/
+    max-width: 100%;  /* 图片不会超过单元格宽度 */
     height: 80px; width: auto;
     object-fit: contain;
   }
@@ -303,7 +384,7 @@
 <header>
   <div class="topbar">
     <div class="logo"><img src="logo.png" alt="Logo"/></div>
-    <nav>
+    <nav class="desktop-nav">
       <ul>
         <li data-key="menu_home" onclick="scrollToSection('home')"></li>
         <li data-key="menu_about" onclick="scrollToSection('about')"></li>
@@ -314,11 +395,30 @@
         <li data-key="menu_contact" onclick="scrollToSection('contact')"></li>
       </ul>
     </nav>
+
+<!-- Mobile Hamburger Toggle -->
+    <div class="mobile-nav-toggle">
+      <button id="hamburger">&#9776;</button>
+    </div>
+
     <div class="lang-toggle">
       <button onclick="setLanguage('cn')">中文</button>| 
       <button onclick="setLanguage('en')">EN</button>
     </div>
   </div>
+
+<!-- Mobile Nav -->
+  <nav class="mobile-nav">
+    <ul>
+      <li data-key="menu_home" onclick="scrollToSection('home')"></li>
+      <li data-key="menu_about" onclick="scrollToSection('about')"></li>
+      <li data-key="menu_services" onclick="scrollToSection('services')"></li>
+      <li data-key="menu_advantages" onclick="scrollToSection('advantages')"></li>
+      <li data-key="menu_certifications" onclick="scrollToSection('certifications')"></li>
+      <li data-key="menu_maps" onclick="scrollToSection('maps')"></li>
+      <li data-key="menu_contact" onclick="scrollToSection('contact')"></li>
+    </ul>
+  </nav>
 </header>
 
 <!-- Banner -->
@@ -507,6 +607,15 @@
     styleEl.textContent += `.tile:nth-of-type(${i+1})::before{background-image:url('${img}');}\n`;
   });
   document.head.appendChild(styleEl);
+  document.addEventListener('DOMContentLoaded', () => {
+    const hamburger = document.getElementById('hamburger');
+    const mobileNav = document.querySelector('.mobile-nav');
+
+    hamburger.addEventListener('click', () => {
+      mobileNav.classList.toggle('show');
+    });
+  });
+
 
   /* ===== Translations ===== */
   const t = {
