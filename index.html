@@ -18,7 +18,44 @@
     margin:0;
     font-family:Segoe UI,Arial,Helvetica,sans-serif;
     background:var(--bg); color:var(--text); line-height:1.6;
+    -webkit-text-size-adjust: 100%; /* 避免 iOS 自动缩放文字 */
+    overflow-x: hidden;
   }
+  
+/* ===== Mobile Responsive Fix ===== */
+  /* 避免所有元素超出屏幕宽度 */
+  * {
+    box-sizing: border-box;
+    max-width: 100%;
+  }
+
+  /* 图片、视频等媒体元素自适应缩放 */
+  img, video {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  /* 表格内容在小屏幕上可横向滚动，而不会撑破布局 */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    overflow-x: auto;
+    display: block;
+  }
+
+  /* 文本过长时自动换行 */
+  p, h1, h2, h3, h4, h5, h6, span, div {
+    word-wrap: break-word;
+    word-break: break-word;
+  }
+
+  * 保证 flex/grid 在小屏幕时能自动换行 */
+  .flex, .grid, .row {
+    flex-wrap: wrap;
+    overflow-x: hidden;
+  }
+
 
   /* ===== Header / Nav ===== */
   header{
@@ -52,8 +89,39 @@
     color:#fff; text-shadow:0 1px 3px rgba(0,0,0,.6);
     padding:10vw 20px; text-align:center;
   }
-  .banner h1{margin:0 0 10px; font-size:clamp(22px,4.2vw,42px);}
+  /* 引入 Google Fonts */
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400&display=swap');
+
+  .banner h1 {
+    font-family: 'Noto Sans SC', sans-serif;
+    margin:0 0 10px; font-size:clamp(22px,4.2vw,42px);
+  }
+
+  .banner .slogan {
+    font-family: 'Playfair Display', serif; 
+    font-size: clamp(20px, 3vw, 30px);
+    font-weight: 600;
+    margin: 10px 0 16px;
+    color: #fff;
+    text-shadow: 0 2px 6px rgba(0,0,0,0.45);
+  }
+
+  .banner p[data-key="company_address"] {
+    font-family: 'Roboto', sans-serif; /* 地址保持现代无衬线 */
+    font-size: 14px;
+  }
+
+  /*.banner h1{margin:0 0 10px; font-size:clamp(22px,4.2vw,42px);}
   .banner p{margin:6px 0;}
+  .banner .slogan {
+    font-size: clamp(20px, 3vw, 30px); /* 比地址大，比标题小 */
+    /*font-weight: 700; /* 加粗 */
+    /*letter-spacing: 1px; /* 稍微拉开字距，更有标语感 */
+    /*margin: 14px 0;
+    /*color: #ffebeb; /* 比纯白稍暖一点，和背景有层次 */
+    /*text-shadow: 0 2px 4px rgba(0,0,0,0.4); /* 微阴影，提高可读性 */
+  /*}
+
 
   /* ===== Sections ===== */
   section{max-width:1200px; margin:0 auto; padding:48px 20px;}
@@ -256,7 +324,7 @@
 <!-- Banner -->
 <section id="home" class="banner">
   <h1 data-key="company_name"></h1>
-  <p data-key="company_slogan"></p>
+  <p class="slogan" data-key="company_slogan"></p>
   <p data-key="company_address"></p>
 </section>
 
@@ -450,7 +518,7 @@
       company_name:"义乌市泓恒进出口有限公司",
       company_name_short:"泓恒进出口",
       company_slogan:"在物流超市里选择国际物流解决方案",
-      company_address:"地址：浙江省义乌市稠州北路1121号福田大厦1707室",
+      company_address:"地址：浙江省义乌市国际商贸城G区5F 19885-99886室",
 
       about_title:"公司简介",
       about_intro:"合伙人均来自上市公司业界精英，深耕贸易、物流行业多年；得益于上市公司的规范管理，进出口业务快速发展的同时兼顾安全操作，已建立完整的进出口服务体系。创始人与义乌国际物流同步成长，公司拥有完善的物流产品。",
@@ -510,7 +578,7 @@
 
       leader1_name:"陈小勤",
       leader1_title:"总裁",
-      leader1_bio:"现任义乌港澳总商会副会长；仁和国际贸易公司、义乌市泓恒进出口有限公司董事长。2011年创办进出口公司以来，始终专注于贸易与物流行业，带领团队深耕国际航线与中欧班列业务。凭借多年行业经验与专业团队，公司已建立完善的进出口服务体系，业务涵盖一般贸易、跨境电商、海空铁路运输及国际货运代理。",
+      leader1_bio:"现任义乌市泓恒进出口有限公司、仁和国际贸易公司董事长；义乌港澳总商会副会长。2011年创办进出口公司以来，始终专注于贸易与物流行业，带领团队深耕国际航线与中欧班列业务。凭借多年行业经验与专业团队，公司已建立完善的进出口服务体系，业务涵盖一般贸易、跨境电商、海空铁路运输及国际货运代理。",
       leader2_name:"陈菁华",
       leader2_title:"联席总裁",
       leader2_bio:"高级物流师，高级经济师，历任义乌市B型保税公司总经理，金义综合保税区业务总监，陆港铁路口岸发展有限公司总经理。多年来积极投身于物流运输事业，以畅通物流大通道为目标，保障服务“义新欧”中欧班列和“义甬舟”海铁联运班列的高质量发展，在双班列发展、口岸业务拓展等方面创造17个引领性、标志性的“首家首单首例”。2023年带领团队落地全国首个“先查验后装运”海关监管集拼仓。",
@@ -534,7 +602,7 @@
       company_name:"YIWU HONOUR EVER IMPORT & EXPORT CO., LTD",
       company_name_short:"Honour Ever",
       company_slogan:"Choose international logistics solutions from the logistics supermarket.",
-      company_address:"ADD: ROOM 1707, FUTIAN MANSION, NO.1121 CHOUZHOU NORTH ROAD, YIWU, ZHEJIANG, CHINA",
+      company_address:"ADD: Room 19885-99886, 5F, Zone G, International Trade City, Yiwu, Zhejiang Province, China",
 
       about_title:"About Us",
       about_intro:"Partners are industry elites from listed companies with deep experience in trade and logistics. Thanks to standardized management, our import & export business has grown rapidly with safe operations and a complete service system. Our founders grew alongside Yiwu’s international logistics industry.",
