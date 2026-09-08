@@ -137,6 +137,24 @@
     flex-shrink: 0;
   }
 
+  .topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+  .mobile-nav-toggle button {
+  background: rgba(255,255,255,.15);
+  border: 1px solid rgba(255,255,255,.35);
+  color: #fff;
+  font-size: 22px;
+  line-height: 1;
+  padding: 6px 9px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+  
   .lang-toggle button {
     background: none;
     border: none;
@@ -391,21 +409,22 @@
         <li data-key="menu_services" onclick="scrollToSection('services')"></li>
         <li data-key="menu_advantages" onclick="scrollToSection('advantages')"></li>
         <li data-key="menu_certifications" onclick="scrollToSection('certifications')"></li>
-        <li data-key="menu_maps" onclick="scrollToSection('maps')"></li>
+        <li data-key="menu_maps" onclick="scrollToSection('map')"></li>
         <li data-key="menu_contact" onclick="scrollToSection('contact')"></li>
       </ul>
     </nav>
 
-<!-- Mobile Hamburger Toggle -->
-    <div class="mobile-nav-toggle">
-      <button id="hamburger">&#9776;</button>
-    </div>
-
-    <div class="lang-toggle">
-      <button onclick="setLanguage('cn')">中文</button>| 
-      <button onclick="setLanguage('en')">EN</button>
-    </div>
+<div class="topbar-right">
+  <!-- Mobile Hamburger Toggle -->
+  <div class="mobile-nav-toggle">
+    <button id="hamburger">&#9776;</button>
   </div>
+
+  <div class="lang-toggle">
+    <button onclick="setLanguage('cn')">中文</button>|
+    <button onclick="setLanguage('en')">EN</button>
+  </div>
+</div>
 
 <!-- Mobile Nav -->
   <nav class="mobile-nav">
@@ -415,7 +434,7 @@
       <li data-key="menu_services" onclick="scrollToSection('services')"></li>
       <li data-key="menu_advantages" onclick="scrollToSection('advantages')"></li>
       <li data-key="menu_certifications" onclick="scrollToSection('certifications')"></li>
-      <li data-key="menu_maps" onclick="scrollToSection('maps')"></li>
+      <li data-key="menu_maps" onclick="scrollToSection('map')"></li>
       <li data-key="menu_contact" onclick="scrollToSection('contact')"></li>
     </ul>
   </nav>
@@ -460,6 +479,7 @@
 
   <div class="service-paras">
     <p data-key="service_para1"></p>
+    <p data-key="service_para2"></p>
     <p data-key="service_para2"></p>
   </div>
 
@@ -580,6 +600,7 @@
   <h2 data-key="contact_title"></h2>
   <p><strong data-key="contact_person_label"></strong> <span data-key="contact_person"></span></p>
   <p><strong>WeChat：</strong><span data-key="contact_wechat"></span></p>
+  <p><strong>WhatsApp：</strong><span data-key="contact_whatsapp"></span></p>
   <p><strong data-key="phone_label"></strong> <span data-key="contact_phone"></span></p>
   <p><strong>Email：</strong><span data-key="contact_email"></span></p>
   <p class="muted" data-key="company_names"></p>
@@ -627,7 +648,7 @@
       company_name:"义乌市泓恒进出口有限公司",
       company_name_short:"泓恒进出口",
       company_slogan:"在物流超市里选择国际物流解决方案",
-      company_address:"地址：浙江省义乌市国际商贸城G区5F 19885-99886室",
+      company_address:"地址：义乌市福田街道福田路105号海洋商务楼1209-1210室",
 
       about_title:"公司简介",
       about_intro:"合伙人均来自上市公司业界精英，深耕贸易、物流行业多年；得益于上市公司的规范管理，进出口业务快速发展的同时兼顾安全操作，已建立完整的进出口服务体系。创始人与义乌国际物流同步成长，公司拥有完善的物流产品。",
@@ -641,9 +662,10 @@
       services_title:"经营范围",
       service_1:"国际贸易",
       service_2:"国际物流",
-      service_3:"基础物流",
+      service_3:"阿里国际站",
       service_4:"跨境电商物流",
 
+      service_new:"新业务！阿里国际站正式上线，专营毛绒玩具钥匙扣等产品。",
       service_para1:"提供海、陆、空干线服务、关务仓储保税陆运、美国DDP业务。客户仓库的全程服务、全球货运服务、跨境物流支持。",
       service_para2:"国际空运、国际海运、中欧班列等多式联运组合。服务港口：宁波、上海、广州、深圳、青岛、天津、厦门、山东。覆盖20+国家地区，与20+国际班轮公司合作，10+优势航线。",
 
@@ -698,6 +720,7 @@
       contact_person:"Crystal 陈菁华",
       phone_label:"电话：",
       contact_wechat:"hua413199864",
+      contact_whatsapp:"+853 6572 1049",
       contact_phone:"0579-85199885, 0086-13606890177",
       contact_email:"cccjinghua@vip.163.com",
       company_names:"义乌市鑫泓供应链服务有限公司 | RENHE CORPORATION LIMITED"
@@ -711,7 +734,7 @@
       company_name:"YIWU HONOUR EVER IMPORT & EXPORT CO., LTD",
       company_name_short:"Honour Ever",
       company_slogan:"Choose international logistics solutions from the logistics supermarket.",
-      company_address:"ADD: Room 19885-99886, 5F, Zone G, International Trade City, Yiwu, Zhejiang Province, China",
+      company_address:"ADD: Room 1209-1210, Ocean Business Building, No. 105 Futian Road, Futian Subdistrict, Yiwu, Zhejiang, China",
 
       about_title:"About Us",
       about_intro:"Partners are industry elites from listed companies with deep experience in trade and logistics. Thanks to standardized management, our import & export business has grown rapidly with safe operations and a complete service system. Our founders grew alongside Yiwu’s international logistics industry.",
@@ -725,9 +748,10 @@
       services_title:"Business Scope",
       service_1:"International Trade",
       service_2:"International Logistics",
-      service_3:"Basic Logistics",
+      service_3:"Alibaba.com E-commerce",
       service_4:"Cross-border E-commerce Logistics",
 
+      service_new:"NEW! Our Alibaba.com store is now live, specializing in plush toy keychains and related products.",
       service_para1:"Providing sea/land/air trunk services, customs warehousing, bonded land transport, and US DDP. Full-service warehouse support, global freight, and cross-border logistics.",
       service_para2:"Multimodal combos: Air freight, Ocean freight, China-Europe Express. Ports: Ningbo, Shanghai, Guangzhou, Shenzhen, Qingdao, Tianjin, Xiamen, Shandong. 20+ countries, 20+ liner partners, 10+ strong routes.",
 
@@ -781,6 +805,7 @@
       contact_person:"Crystal CHEN",
       phone_label:"Phone: ",
       contact_wechat:"hua413199864",
+      contact_whatsapp:"+853 6572 1049",
       contact_phone:"0579-85199885, 0086-13606890177",
       contact_email:"cccjinghua@vip.163.com",
       company_names:"YIWU XINHONG SUPPLY CHAIN SERVICE CO., LTD | RENHE CORPORATION LIMITED"
